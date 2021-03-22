@@ -5,8 +5,6 @@ import Sprite from "./Sprite.js";
 const assets = new AssetManager();
 assets.carregaImagem("orc", "assets/orc.png");
 
-document.body.appendChild(assets.img("orc"));
-
 const canvas = document.querySelector("canvas");
 const cena1 = new Cena(canvas, assets);
 
