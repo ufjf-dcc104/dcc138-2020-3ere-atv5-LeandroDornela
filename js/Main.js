@@ -1,8 +1,14 @@
+import AssetManager from "./AssetManager.js";
 import Cena from "./Cena.js";
 import Sprite from "./Sprite.js";
 
+const img1 = new Image();
+img1.src = "assets/orc.png";
+document.body.appendChild(img1);
+const assets = new AssetManager();
+
 const canvas = document.querySelector("canvas");
-const cena1 = new Cena(canvas);
+const cena1 = new Cena(canvas, assets);
 
 cena1.desenhar();
 
