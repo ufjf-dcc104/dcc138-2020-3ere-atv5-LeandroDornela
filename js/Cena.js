@@ -3,7 +3,7 @@ export default class Cena
     constructor(canvas)
     {
         this.canvas = canvas;
-        this.ctx = canvas.getContext("2s");
+        this.ctx = canvas.getContext("2d");
     }
 
     desenhar()
