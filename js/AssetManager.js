@@ -4,6 +4,19 @@ export default class AssetManager{
         this.aCarregar = 0;
         this.carregadas = 0;
 
+        this.imagens = new Map();
+    }
+
+    carregaImagem(chave, url)
+    {
+        const img1 = new Image();
+        img1.src = url;
+        this.imagens.set(chave, img1);
+    }
+
+    img(chave)
+    {
+        return this.imagens.get(chave);
     }
 
     progresso(){
