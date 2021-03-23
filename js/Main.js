@@ -6,7 +6,7 @@ import Sprite from "./Sprite.js";
 import modeloMapa1 from "../maps/map1.js";
 import InputManager from "./InputManager.js";
 
-const input = InputManager();
+const input = new InputManager();
 const mixer = new Mixer(10);
 const assets = new AssetManager(mixer);
 const canvas = document.querySelector("canvas");
@@ -21,9 +21,25 @@ input.configurarTeclado({
 })
 
 
-const pc = new Sprite({x:100,y:100,w:32,h:32,color:"blue",vx:20});
+const pc = new Sprite({x:100,y:100,w:32,h:32,color:"blue"});
 const en1 = new Sprite({x:320,y:200,w:32,h:32,color:"red",vy:10});
 const en2 = new Sprite({x:320,y:100,w:32,h:32,color:"red",vy:-10});
+
+pc.controlar = function(dt)
+{
+    if(input.comandos.get("ESQUERDA"))
+    {
+        this.vx = -50;
+    }
+    else if(input.comandos.get("DIREITA"))
+    {
+        this.vx = 50;
+    }
+    else
+    {
+        this.vx = 0;
+    }
+}
 
 mapa1.carregaMapa(modeloMapa1);
 cena1.configuraMapa(mapa1);
