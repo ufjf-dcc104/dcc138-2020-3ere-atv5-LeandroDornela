@@ -15,7 +15,7 @@ canvas.height = 24*32;
 const mapa1 = new Mapa(24, 32, 32);
 const cena1 = new Cena(canvas, assets);
 
-const pc = new Sprite({x:100,y:100,w:32,h:32,color:"blue"});
+const pc = new Sprite({x:48,y:48,w:32,h:32,color:"green"});
 
 mapa1.carregaMapa(modeloMapa1);
 cena1.configuraMapa(mapa1);
@@ -67,7 +67,7 @@ function perseguePC(dt)
 }
 */
 
-SpawnEnemies(RandomRange(5, 20));
+SpawnEnemies(RandomRangeInt(50, 100), 32, "red", 20);
 
 cena1.iniciar();
 cena1.desenhar();
@@ -88,23 +88,25 @@ document.addEventListener("keydown", (e)=>{
     }
 })
 
-function SpawnEnemies(numEnemies)
+function SpawnEnemies(numEnemies, enemySize, enemyColor, enemySpeed)
 {
     for (let i = 0; i < numEnemies; i++)
     {
-        let id = RandomRange(0, mapa1.freePositions.length);
+        let id = RandomRangeInt(0, mapa1.freePositions.length);
         const newEn = new Sprite({
             x:mapa1.freePositions[id].c * 32 + 32/2,
             y:mapa1.freePositions[id].l * 32 + 32/2,
-            w:32,
-            h:32,
-            color:"red"});
-
+            w:enemySize,
+            h:enemySize,
+            color:enemyColor,
+            vx:enemySpeed * Math.random() * RandomRangeInt(-1,2),
+            vy:enemySpeed * Math.random() * RandomRangeInt(-1,2)
+        });
         cena1.adicionar(newEn);
     }
 }
 
-function RandomRange(a, b)
+function RandomRangeInt(from, to)
 {
-    return (Math.floor(Math.random() * b) + a);
+    return (Math.floor(Math.random() * (to - from) ) + from);
 }
