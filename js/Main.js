@@ -24,8 +24,8 @@ input.configurarTeclado({
 
 
 const pc = new Sprite({x:100,y:100,w:32,h:32,color:"blue"});
-const en1 = new Sprite({x:320,y:200,w:32,h:32,color:"red",vy:10});
-const en2 = new Sprite({x:320,y:100,w:32,h:32,color:"red",vy:-10});
+const en1 = new Sprite({x:320,y:200,w:32,h:32,color:"red"});
+const en2 = new Sprite({x:320,y:100,w:32,h:32,color:"red"});
 
 pc.controlar = function(dt)
 {
@@ -65,6 +65,14 @@ assets.carregaAudio("coin", "assets/coin.wav")
 cena1.adicionar(pc);
 cena1.adicionar(en1);
 cena1.adicionar(en2);
+
+function perseguePC(dt)
+{
+    this.vx = 50 * Math.sign(pc.x - this.x);
+    this.vy = 50 * Math.sign(pc.y - this.y);
+}
+
+en1.controlar = perseguePC;
 
 cena1.iniciar();
 

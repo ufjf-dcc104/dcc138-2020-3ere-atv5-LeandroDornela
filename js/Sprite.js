@@ -1,6 +1,6 @@
 export default class Sprite
 {
-    constructor({x=0,y=0,w=0,h=0,color="black",vx=0,vy=0})
+    constructor({x=0,y=0,w=0,h=0,color="black",vx=0,vy=0,controlar=()=>{}})
     {
         this.x = x;
         this.y = y;
@@ -15,6 +15,8 @@ export default class Sprite
 
         this.mx = 0;
         this.my = 0;
+
+        this.controlar = controlar;
     }
 
     desenhar(ctx)
