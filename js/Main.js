@@ -14,79 +14,101 @@ canvas.width = 32*32;
 canvas.height = 24*32;
 const mapa1 = new Mapa(24, 32, 32);
 const cena1 = new Cena(canvas, assets);
-
+const SPAWN_INTERVAL = 4;
+let spawnTimer = 0;
+let t0 = 0;
+let dt = 0;
+let idAnim = null;
 const pc = new Sprite({x:48,y:48,w:32,h:32,color:"green"});
-
-mapa1.carregaMapa(modeloMapa1);
-cena1.configuraMapa(mapa1);
-cena1.adicionar(pc);
-assets.carregaImagem("orc", "assets/orc.png");
-assets.carregaAudio("coin", "assets/coin.wav");
-
-input.configurarTeclado({
-    ArrowLeft:"ESQUERDA",
-    ArrowRight:"DIREITA",
-    ArrowUp:"CIMA",
-    ArrowDown:"BAIXO",
-})
-
-pc.controlar = function(dt)
-{
-    if(input.comandos.get("ESQUERDA"))
-    {
-        this.vx = -50;
-    }
-    else if(input.comandos.get("DIREITA"))
-    {
-        this.vx = 50;
-    }
-    else
-    {
-        this.vx = 0;
-    }
-
-    if(input.comandos.get("CIMA"))
-    {
-        this.vy = -50;
-    }
-    else if(input.comandos.get("BAIXO"))
-    {
-        this.vy = 50;
-    }
-    else
-    {
-        this.vy = 0;
-    }
-}
-
-/*
-function perseguePC(dt)
-{
-    this.vx = 50 * Math.sign(pc.x - this.x);
-    this.vy = 50 * Math.sign(pc.y - this.y);
-}
-*/
-
-SpawnEnemies(RandomRangeInt(50, 100), 32, "red", 20);
-
-cena1.iniciar();
-cena1.desenhar();
-
 
 document.addEventListener("keydown", (e)=>{
     switch(e.key)
     {
         case "s":
-            cena1.iniciar();
             break;
         case "d":
-            cena1.parar();
             break;
         case "c":
             assets.play("coin");
             break;
     }
 })
+
+Start();
+idAnim = requestAnimationFrame((t) => {Update(t);});
+
+function Start()
+{
+    mapa1.carregaMapa(modeloMapa1);
+    cena1.configuraMapa(mapa1);
+    cena1.adicionar(pc);
+    assets.carregaImagem("orc", "assets/orc.png");
+    assets.carregaAudio("coin", "assets/coin.wav");
+
+    input.configurarTeclado({
+        ArrowLeft:"ESQUERDA",
+        ArrowRight:"DIREITA",
+        ArrowUp:"CIMA",
+        ArrowDown:"BAIXO",
+    })
+
+    pc.controlar = function(dt)
+    {
+        if(input.comandos.get("ESQUERDA"))
+        {
+            this.vx = -50;
+        }
+        else if(input.comandos.get("DIREITA"))
+        {
+            this.vx = 50;
+        }
+        else
+        {
+            this.vx = 0;
+        }
+
+        if(input.comandos.get("CIMA"))
+        {
+            this.vy = -50;
+        }
+        else if(input.comandos.get("BAIXO"))
+        {
+            this.vy = 50;
+        }
+        else
+        {
+            this.vy = 0;
+        }
+    }
+
+    SpawnEnemies(RandomRangeInt(50, 100), 32, "red", 20);
+
+    //cena1.desenhar();
+}
+
+
+function Update(t)
+{
+    t0 = t0 ?? t;
+    dt = (t - t0) / 1000;
+
+    cena1.passo(dt);
+    cena1.checaColisao();
+    cena1.removerSprites();
+    cena1.desenhar();
+
+    idAnim = requestAnimationFrame((t) => {Update(t);});
+
+    t0 = t;
+}
+
+function Stop()
+{
+    cancelAnimationFrame(idAnim);
+    t0 = null;
+    dt = 0;
+}
+
 
 function SpawnEnemies(numEnemies, enemySize, enemyColor, enemySpeed)
 {
@@ -106,7 +128,16 @@ function SpawnEnemies(numEnemies, enemySize, enemyColor, enemySpeed)
     }
 }
 
+
 function RandomRangeInt(from, to)
 {
     return (Math.floor(Math.random() * (to - from) ) + from);
 }
+
+/*
+function perseguePC(dt)
+{
+    this.vx = 50 * Math.sign(pc.x - this.x);
+    this.vy = 50 * Math.sign(pc.y - this.y);
+}
+*/

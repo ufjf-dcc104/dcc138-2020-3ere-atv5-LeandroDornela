@@ -6,9 +6,9 @@ export default class Cena
         this.ctx = canvas.getContext("2d");
         this.sprites = [];
         this.aRemover = [];
-        this.t0 = 0;
-        this.dt = 0;
-        this.idAnim = null;
+        //this.t0 = 0;
+        //this.dt = 0;
+        //this.idAnim = null;
         this.assets = assets;
         this.mapa = null;
     }
@@ -38,6 +38,7 @@ export default class Cena
         this.sprites.push(sprite);
     }
 
+    // update
     passo(dt)
     {
         if(this.assets.acabou)
@@ -50,6 +51,7 @@ export default class Cena
 
     quadro(t)
     {
+        /*
         this.t0 = this.t0 ?? t;
         this.dt = (t - this.t0) / 1000;
 
@@ -61,18 +63,21 @@ export default class Cena
         this.iniciar();
 
         this.t0 = t;
+        */
     }
 
     iniciar()
     {
-        this.idAnim = requestAnimationFrame((t) => {this.quadro(t);});
+        //this.idAnim = requestAnimationFrame((t) => {this.quadro(t);});
     }
 
     parar()
     {
+        /*
         cancelAnimationFrame(this.idAnim);
         this.t0 = null;
         this.dt = 0;
+        */
     }
 
     checaColisao()
