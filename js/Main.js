@@ -56,6 +56,8 @@ function Start()
     cena1.ConfigMap(mapa1);
     cena1.AddObject(pc);
     assets.carregaImagem("orc", "assets/orc.png");
+    assets.carregaImagem("rocks", "assets/rocks.png");
+    assets.carregaImagem("lava", "assets/lava.png");
     assets.carregaAudio("coin", "assets/coin.wav");
 
     input.configurarTeclado({
