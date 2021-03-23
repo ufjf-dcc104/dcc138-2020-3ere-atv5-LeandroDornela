@@ -16,8 +16,10 @@ const mapa1 = new Mapa(9, 16, 32);
 const cena1 = new Cena(canvas, assets);
 
 input.configurarTeclado({
-    "ArrowLeft":"ESQUERDA",
-    "ArrowRight":"DIREITA",
+    ArrowLeft:"ESQUERDA",
+    ArrowRight:"DIREITA",
+    ArrowUp:"CIMA",
+    ArrowDown:"BAIXO",
 })
 
 
@@ -38,6 +40,19 @@ pc.controlar = function(dt)
     else
     {
         this.vx = 0;
+    }
+
+    if(input.comandos.get("CIMA"))
+    {
+        this.vy = -50;
+    }
+    else if(input.comandos.get("BAIXO"))
+    {
+        this.vy = 50;
+    }
+    else
+    {
+        this.vy = 0;
     }
 }
 
