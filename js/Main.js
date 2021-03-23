@@ -17,7 +17,7 @@ let idAnim = null;
 
 
 const input = new InputManager();
-const mixer = new Mixer(10);
+const mixer = new Mixer(3);
 const assets = new AssetManager(mixer);
 
 const canvas = document.querySelector("canvas");
@@ -40,7 +40,7 @@ document.addEventListener("keydown", (e)=>{
         case "d":
             break;
         case "c":
-            assets.play("coin");
+            assets.play("collide");
             break;
     }
 })
@@ -58,7 +58,7 @@ function Start()
     assets.carregaImagem("orc", "assets/orc.png");
     assets.carregaImagem("rocks", "assets/rocks.png");
     assets.carregaImagem("lava", "assets/lava.png");
-    assets.carregaAudio("coin", "assets/coin.wav");
+    assets.carregaAudio("collide", "assets/collide.wav");
 
     input.configurarTeclado({
         ArrowLeft:"ESQUERDA",
@@ -164,6 +164,7 @@ function AddNewRandomEnemy(enemySize, enemyColor, enemySpeed)
             vx:enemySpeed * Math.random() * RandomRangeInt(-1,2),
             vy:enemySpeed * Math.random() * RandomRangeInt(-1,2)
         });
+        mapa1.freePositions.splice(id, 1);
         cena1.AddObject(newEn);
 }
 
