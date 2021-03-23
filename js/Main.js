@@ -4,7 +4,9 @@ import Mapa from "./Mapa.js";
 import Mixer from "./Mixer.js";
 import Sprite from "./Sprite.js";
 import modeloMapa1 from "../maps/map1.js";
+import InputManager from "./InputManager.js";
 
+const input = InputManager();
 const mixer = new Mixer(10);
 const assets = new AssetManager(mixer);
 const canvas = document.querySelector("canvas");
@@ -12,6 +14,11 @@ canvas.width = 16*32;
 canvas.height = 9*32;
 const mapa1 = new Mapa(9, 16, 32);
 const cena1 = new Cena(canvas, assets);
+
+input.configurarTeclado({
+    "ArrowLeft":"ESQUERDA",
+    "ArrowRight":"DIREITA",
+})
 
 
 const pc = new Sprite({x:100,y:100,w:32,h:32,color:"blue",vx:20});
