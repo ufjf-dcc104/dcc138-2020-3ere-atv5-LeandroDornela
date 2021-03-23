@@ -83,7 +83,6 @@ export default class Cena
         if(!this.aRemover.includes(a))
         {
             this.assets.play("collide");
-            console.log("collision");
             this.aRemover.push(a);
         }
         if(!this.aRemover.includes(b))

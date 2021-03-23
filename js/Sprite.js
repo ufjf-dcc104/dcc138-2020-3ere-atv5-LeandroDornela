@@ -91,6 +91,7 @@ export default class Sprite
                 const tile = {x:pmx*SIZE+SIZE/2, y:pmy*SIZE+SIZE/2, w:SIZE, h:SIZE};
                 if(this.colidiuCom(tile))
                 {
+                    this.cena.assets.play("collide_wall");
                     this.vx = 0;
                     this.x = tile.x - tile.w/2 - this.w/2 - 1;
                 }
@@ -109,6 +110,7 @@ export default class Sprite
                 const tile = {x:pmx*SIZE+SIZE/2, y:pmy*SIZE+SIZE/2, w:SIZE, h:SIZE};
                 if(this.colidiuCom(tile))
                 {
+                    this.cena.assets.play("collide_wall");
                     this.vx = 0;
                     this.x = tile.x + tile.w/2 + this.w/2 + 1;
                 }
@@ -127,6 +129,7 @@ export default class Sprite
                 const tile = {x:pmx*SIZE+SIZE/2, y:pmy*SIZE+SIZE/2, w:SIZE, h:SIZE};
                 if(this.colidiuCom(tile))
                 {
+                    this.cena.assets.play("collide_wall");
                     this.vy = 0;
                     this.y = tile.y - tile.h/2 - this.h/2 - 1;
                 }
@@ -145,6 +148,7 @@ export default class Sprite
                 const tile = {x:pmx*SIZE+SIZE/2, y:pmy*SIZE+SIZE/2, w:SIZE, h:SIZE};
                 if(this.colidiuCom(tile))
                 {
+                    this.cena.assets.play("collide_wall");
                     this.vy = 0;
                     this.y = tile.y + tile.h/2 + this.h/2 + 1;
                 }

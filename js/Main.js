@@ -17,7 +17,7 @@ let idAnim = null;
 
 
 const input = new InputManager();
-const mixer = new Mixer(3);
+const mixer = new Mixer(32);
 const assets = new AssetManager(mixer);
 
 const canvas = document.querySelector("canvas");
@@ -26,7 +26,7 @@ canvas.height = VIEW_HEIGHT;
 
 const mapa1 = new Mapa(24, 32, 32);
 const cena1 = new Cena(canvas, assets);
-const pc = new Sprite({x:48,y:48,w:32,h:32,color:"green"});
+const pc = new Sprite({x:50,y:50,w:16,h:16,color:"white"});
 
 const SPAWN_INTERVAL = 4;
 let spawnTimer = 0;
@@ -59,6 +59,7 @@ function Start()
     assets.carregaImagem("rocks", "assets/rocks.png");
     assets.carregaImagem("lava", "assets/lava.png");
     assets.carregaAudio("collide", "assets/collide.wav");
+    assets.carregaAudio("collide_wall", "assets/collide_wall.wav");
 
     input.configurarTeclado({
         ArrowLeft:"ESQUERDA",
@@ -96,7 +97,7 @@ function Start()
         }
     }
 
-    SpawnEnemies(RandomRangeInt(50, 100), 32, "red", 20);
+    SpawnEnemies(RandomRangeInt(5, 20), 32, "red", 20);
 
     
 }
