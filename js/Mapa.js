@@ -6,6 +6,8 @@ export default class Mapa
         this.COLUMNS = columns;
         this.SIZE = size;
         this.tiles = [];
+        this.freePositions = [];
+        this.walls = [];
 
         for (let l = 0; l < this.LINES; l++) {
             this.tiles[l] = [];
@@ -48,6 +50,14 @@ export default class Mapa
             this.tiles[l] = [];
             for (let c = 0; c < this.COLUMNS; c++) {
                 this.tiles[l][c] = modelo[l][c];
+                if(this.tiles[l][c] == 0)
+                {
+                    this.freePositions.push({l,c});
+                }
+                else if(this.tiles[l][c] == 1)
+                {
+                    this.walls.push({l,c});
+                }
             }
         }
     }
