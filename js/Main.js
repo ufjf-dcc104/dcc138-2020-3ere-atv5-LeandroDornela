@@ -6,20 +6,31 @@ import Sprite from "./Sprite.js";
 import modeloMapa1 from "../maps/map1.js";
 import InputManager from "./InputManager.js";
 
-const input = new InputManager();
-const mixer = new Mixer(10);
-const assets = new AssetManager(mixer);
-const canvas = document.querySelector("canvas");
-canvas.width = 32*32;
-canvas.height = 24*32;
-const mapa1 = new Mapa(24, 32, 32);
-const cena1 = new Cena(canvas, assets);
-const SPAWN_INTERVAL = 4;
-let spawnTimer = 0;
+const TILE_WIDTH = 32;
+const TILE_HEIGHT = 32;
+const VIEW_WIDTH = 32*32;
+const VIEW_HEIGHT = 24*32;
+
 let t0 = 0;
 let dt = 0;
 let idAnim = null;
+
+
+const input = new InputManager();
+const mixer = new Mixer(10);
+const assets = new AssetManager(mixer);
+
+const canvas = document.querySelector("canvas");
+canvas.width = VIEW_WIDTH;
+canvas.height = VIEW_HEIGHT;
+
+const mapa1 = new Mapa(24, 32, 32);
+const cena1 = new Cena(canvas, assets);
 const pc = new Sprite({x:48,y:48,w:32,h:32,color:"green"});
+
+const SPAWN_INTERVAL = 4;
+let spawnTimer = 0;
+
 
 document.addEventListener("keydown", (e)=>{
     switch(e.key)
@@ -37,11 +48,13 @@ document.addEventListener("keydown", (e)=>{
 Start();
 idAnim = requestAnimationFrame((t) => {Update(t);});
 
+
 function Start()
 {
     mapa1.carregaMapa(modeloMapa1);
-    cena1.configuraMapa(mapa1);
-    cena1.adicionar(pc);
+    cena1.Start();
+    cena1.ConfigMap(mapa1);
+    cena1.AddObject(pc);
     assets.carregaImagem("orc", "assets/orc.png");
     assets.carregaAudio("coin", "assets/coin.wav");
 
@@ -83,24 +96,37 @@ function Start()
 
     SpawnEnemies(RandomRangeInt(50, 100), 32, "red", 20);
 
-    //cena1.desenhar();
+    
 }
 
 
 function Update(t)
 {
+    if(spawnTimer >= SPAWN_INTERVAL)
+    {
+        spawnTimer = 0;
+
+        AddNewRandomEnemy(32, "yellow", 50);
+    }
+    else
+    {
+        spawnTimer += dt;
+    }
+
+
     t0 = t0 ?? t;
     dt = (t - t0) / 1000;
 
-    cena1.passo(dt);
-    cena1.checaColisao();
-    cena1.removerSprites();
-    cena1.desenhar();
+    cena1.Update(dt);
+    cena1.UpdatePhysics();
+    cena1.LateUpdate();
+    cena1.Draw();
 
     idAnim = requestAnimationFrame((t) => {Update(t);});
 
     t0 = t;
 }
+
 
 function Stop()
 {
@@ -114,7 +140,19 @@ function SpawnEnemies(numEnemies, enemySize, enemyColor, enemySpeed)
 {
     for (let i = 0; i < numEnemies; i++)
     {
-        let id = RandomRangeInt(0, mapa1.freePositions.length);
+        AddNewRandomEnemy(enemySize, enemyColor, enemySpeed);
+    }
+}
+
+
+function RandomRangeInt(from, to)
+{
+    return (Math.floor(Math.random() * (to - from) ) + from);
+}
+
+function AddNewRandomEnemy(enemySize, enemyColor, enemySpeed)
+{
+    let id = RandomRangeInt(0, mapa1.freePositions.length);
         const newEn = new Sprite({
             x:mapa1.freePositions[id].c * 32 + 32/2,
             y:mapa1.freePositions[id].l * 32 + 32/2,
@@ -124,14 +162,7 @@ function SpawnEnemies(numEnemies, enemySize, enemyColor, enemySpeed)
             vx:enemySpeed * Math.random() * RandomRangeInt(-1,2),
             vy:enemySpeed * Math.random() * RandomRangeInt(-1,2)
         });
-        cena1.adicionar(newEn);
-    }
-}
-
-
-function RandomRangeInt(from, to)
-{
-    return (Math.floor(Math.random() * (to - from) ) + from);
+        cena1.AddObject(newEn);
 }
 
 /*
