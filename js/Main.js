@@ -14,8 +14,8 @@ const mapa1 = new Mapa(9, 16, 32);
 const cena1 = new Cena(canvas, assets);
 
 
-const pc = new Sprite({x:0,y:100,w:32,h:32,color:"blue",vx:10});
-const en1 = new Sprite({x:100,y:100,w:32,h:32,color:"red"});
+const pc = new Sprite({x:100,y:100,w:32,h:32,color:"blue",vx:10});
+const en1 = new Sprite({x:100,y:200,w:32,h:32,color:"red"});
 
 mapa1.carregaMapa(modeloMapa1);
 cena1.configuraMapa(mapa1);
