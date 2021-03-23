@@ -3,7 +3,7 @@ import Cena from "./Cena.js";
 import Mapa from "./Mapa.js";
 import Mixer from "./Mixer.js";
 import Sprite from "./Sprite.js";
-import {map1 as modeloMapa1} from "../maps/map1.js";
+import modeloMapa1 from "../maps/map1.js";
 
 const mixer = new Mixer(10);
 const assets = new AssetManager(mixer);
