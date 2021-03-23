@@ -15,18 +15,20 @@ canvas.height = 24*32;
 const mapa1 = new Mapa(24, 32, 32);
 const cena1 = new Cena(canvas, assets);
 
+const pc = new Sprite({x:100,y:100,w:32,h:32,color:"blue"});
+
+mapa1.carregaMapa(modeloMapa1);
+cena1.configuraMapa(mapa1);
+cena1.adicionar(pc);
+assets.carregaImagem("orc", "assets/orc.png");
+assets.carregaAudio("coin", "assets/coin.wav");
+
 input.configurarTeclado({
     ArrowLeft:"ESQUERDA",
     ArrowRight:"DIREITA",
     ArrowUp:"CIMA",
     ArrowDown:"BAIXO",
 })
-
-
-
-const pc = new Sprite({x:100,y:100,w:32,h:32,color:"blue"});
-//const en1 = new Sprite({x:320,y:200,w:32,h:32,color:"red"});
-//const en2 = new Sprite({x:320,y:100,w:32,h:32,color:"red"});
 
 pc.controlar = function(dt)
 {
@@ -57,28 +59,17 @@ pc.controlar = function(dt)
     }
 }
 
+/*
 function perseguePC(dt)
 {
     this.vx = 50 * Math.sign(pc.x - this.x);
     this.vy = 50 * Math.sign(pc.y - this.y);
 }
-
-mapa1.carregaMapa(modeloMapa1);
-cena1.configuraMapa(mapa1);
-
-assets.carregaImagem("orc", "assets/orc.png");
-assets.carregaAudio("coin", "assets/coin.wav")
+*/
 
 SpawnEnemies(RandomRange(5, 20));
 
-cena1.adicionar(pc);
-//cena1.adicionar(en1);
-//cena1.adicionar(en2);
-
-//en1.controlar = perseguePC;
-
 cena1.iniciar();
-
 cena1.desenhar();
 
 
