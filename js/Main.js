@@ -1,11 +1,13 @@
 import AssetManager from "./AssetManager.js";
 import Cena from "./Cena.js";
+import Mixer from "./Mixer.js";
 import Sprite from "./Sprite.js";
 
 const assets = new AssetManager();
 assets.carregaImagem("orc", "assets/orc.png");
 assets.carregaAudio("coin", "assets/coin.wav")
 
+const mixer = new Mixer(10);
 const canvas = document.querySelector("canvas");
 const cena1 = new Cena(canvas, assets);
 
@@ -28,8 +30,8 @@ document.addEventListener("keydown", (e)=>{
         case "d":
             cena1.parar();
             break;
-            case "c":
-            assets.audio("coin").play();
+        case "c":
+            mixer.play(assets.audio("coin"));
             break;
     }
 })
