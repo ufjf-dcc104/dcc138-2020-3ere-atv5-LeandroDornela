@@ -55,6 +55,8 @@ export default class Sprite
     {
         this.aplicaRestricoesDireita(dt);
         this.aplicaRestricoesEsquerda(dt);
+        this.aplicaRestricoesBaixo(dt);
+        this.aplicaRestricoesCima(dt);
     }
 
     aplicaRestricoesDireita(dt)
@@ -92,6 +94,46 @@ export default class Sprite
                 {
                     this.vx = 0;
                     this.x = tile.x + tile.w/2 + this.w/2 + 1;
+                }
+            }
+        }
+    }
+
+    aplicaRestricoesBaixo(dt)
+    {
+        if(this.vy > 0)
+        {
+            const SIZE = this.cena.mapa.SIZE;
+            const pmx = this.mx;
+            const pmy = this.my + 1;
+
+            if(this.cena.mapa.tiles[pmy][pmx]!=0)
+            {
+                const tile = {x:pmx*SIZE+SIZE/2, y:pmy*SIZE+SIZE/2, w:SIZE, h:SIZE};
+                if(this.colidiuCom(tile))
+                {
+                    this.vy = 0;
+                    this.y = tile.y - tile.h/2 - this.h/2 - 1;
+                }
+            }
+        }
+    }
+
+    aplicaRestricoesCima(dt)
+    {
+        if(this.vy < 0)
+        {
+            const SIZE = this.cena.mapa.SIZE;
+            const pmx = this.mx;
+            const pmy = this.my - 1;
+
+            if(this.cena.mapa.tiles[pmy][pmx]!=0)
+            {
+                const tile = {x:pmx*SIZE+SIZE/2, y:pmy*SIZE+SIZE/2, w:SIZE, h:SIZE};
+                if(this.colidiuCom(tile))
+                {
+                    this.vy = 0;
+                    this.y = tile.y + tile.h/2 + this.h/2 + 1;
                 }
             }
         }

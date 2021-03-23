@@ -15,7 +15,8 @@ const cena1 = new Cena(canvas, assets);
 
 
 const pc = new Sprite({x:100,y:100,w:32,h:32,color:"blue",vx:20});
-const en1 = new Sprite({x:320,y:200,w:32,h:32,color:"red",vx:-10});
+const en1 = new Sprite({x:320,y:200,w:32,h:32,color:"red",vy:10});
+const en2 = new Sprite({x:320,y:100,w:32,h:32,color:"red",vy:-10});
 
 mapa1.carregaMapa(modeloMapa1);
 cena1.configuraMapa(mapa1);
@@ -25,6 +26,7 @@ assets.carregaAudio("coin", "assets/coin.wav")
 
 cena1.adicionar(pc);
 cena1.adicionar(en1);
+cena1.adicionar(en2);
 
 cena1.iniciar();
 
