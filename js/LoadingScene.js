@@ -8,7 +8,7 @@ export default class LoadingScene extends Scene
         {
             if(this.input.comandos.get("PROXIMA_CENA"))
             {
-                this.game.SelectScene("jogo");
+                this.game.SelectScene("level1");
             }
         }
     }
@@ -18,7 +18,7 @@ export default class LoadingScene extends Scene
         this.ctx.fillStyle = "black";
         this.ctx.fillRect(0,0,this.canvas.width, this.canvas.height);
 
-        this.ctx.font = "16px Arial";
+        this.ctx.font = "16px Unispace";
         this.ctx.fillStyle = "white";
         this.ctx.textAlign = "center";
         this.ctx.fillText(this.assets?.progresso(), this.canvas.width/2, this.canvas.height/2);

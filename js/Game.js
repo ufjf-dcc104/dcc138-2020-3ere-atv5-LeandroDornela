@@ -1,6 +1,7 @@
 import LoadingScene from "./LoadingScene.js";
 import EndScene from "./EndScene.js";
 import Level1 from "./Level1.js";
+import Level2 from "./Level2.js";
 
 export default class Game
 {
@@ -21,8 +22,10 @@ export default class Game
         // Scenes
         let loadingScene = new LoadingScene(this.canvas, this.assets);
         this.AddScene("loading", loadingScene);
-        let cena1 = new Level1(this.canvas, this.assets);
-        this.AddScene("jogo", cena1);
+        let level1 = new Level1(this.canvas, this.assets);
+        this.AddScene("level1", level1);
+        let level2 = new Level2(this.canvas, this.assets);
+        this.AddScene("level2", level2);
         let endScene = new EndScene(this.canvas, this.assets);
         this.AddScene("end", endScene);
 

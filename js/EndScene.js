@@ -19,7 +19,7 @@ export default class EndScene extends Scene
         this.ctx.fillStyle = "black";
         this.ctx.fillRect(0,0,this.canvas.width, this.canvas.height);
 
-        this.ctx.font = "16px Arial";
+        this.ctx.font = "16px Unispace";
         this.ctx.fillStyle = "white";
         this.ctx.textAlign = "center";
         this.ctx.fillText("GAME OVER", this.canvas.width/2, this.canvas.height/2);

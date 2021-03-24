@@ -1,5 +1,5 @@
 import Scene from "./Scene.js";
-import modeloMapa1 from "../maps/map1.js";
+import modeloMapa2 from "../maps/map2.js";
 import GameObject from "./GameObject.js";
 import Mapa from "./Mapa.js";
 import Player from "./Player.js";
@@ -7,7 +7,7 @@ import Enemy from "./Enemy.js";
 import Coin from "./Coin.js";
 import Door from "./Door.js";
 
-export default class Level1 extends Scene
+export default class Level2 extends Scene
 {
     constructor(canvas, assets)
     {
@@ -25,11 +25,11 @@ export default class Level1 extends Scene
         super.Start();
 
         // Setup do mapa
-        this.map.LoadMap(modeloMapa1, this);
+        this.map.LoadMap(modeloMapa2, this);
         
         
 
-        this.SpawnEnemies(this.RandomRangeInt(5, 20), 32, "red", 20);
+        this.SpawnEnemies(this.RandomRangeInt(50, 100), 32, "red", 20);
     }
 
     Update(dt, input)
@@ -68,7 +68,7 @@ export default class Level1 extends Scene
                 // door
                 let door = new Door({x:j*32 + 16,y:i*32 + 16,w:32,h:32,color:"red"})
                 door.tag = "door";
-                door.nextScene = "level2";
+                door.nextScene = "end";
                 this.AddObject(door);
             break;
         }
