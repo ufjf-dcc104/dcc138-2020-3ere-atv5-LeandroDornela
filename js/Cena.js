@@ -8,6 +8,7 @@ export default class Cena
         this.aRemover = [];
         this.assets = assets;
         this.mapa = null;
+        this.game = null;
     }
 
     Start()

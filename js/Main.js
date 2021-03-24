@@ -5,6 +5,7 @@ import Mixer from "./Mixer.js";
 import Sprite from "./Sprite.js";
 import modeloMapa1 from "../maps/map1.js";
 import InputManager from "./InputManager.js";
+import Game from "./Game.js";
 
 const TILE_WIDTH = 32;
 const TILE_HEIGHT = 32;
@@ -27,6 +28,9 @@ canvas.height = VIEW_HEIGHT;
 const mapa1 = new Mapa(24, 32, 32);
 const cena1 = new Cena(canvas, assets);
 const pc = new Sprite({x:50,y:50,w:16,h:16,color:"white"});
+
+const game = new Game(canvas, assets, input);
+game.adicionarCena("jogo", cena1);
 
 const SPAWN_INTERVAL = 4;
 let spawnTimer = 0;
