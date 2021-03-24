@@ -9,7 +9,7 @@ export default class Game
         this.cena = null;
     }
 
-    adicionarCena(chave, cena)
+    AddScene(chave, cena)
     {
         this.cenas.set(chave, cena);
         cena.game = this;
@@ -23,7 +23,7 @@ export default class Game
         }
     }
 
-    selecionaCena(chave)
+    SelectScene(chave)
     {
         if(this.cenas.has(chave))
         {
@@ -31,12 +31,12 @@ export default class Game
         }
     }
 
-    iniciar()
+    Start()
     {
         this.cena?.Start();
     }
 
-    parar()
+    Stop()
     {
         //this.cena?.parar();
     }

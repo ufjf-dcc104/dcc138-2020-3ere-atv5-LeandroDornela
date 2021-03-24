@@ -2,6 +2,7 @@ import Cena from "./Cena.js";
 
 export default class Level1 extends Cena
 {
+    /*
     OnCollide(a, b)
     {
         if(!this.aRemover.includes(a))
@@ -17,7 +18,8 @@ export default class Level1 extends Cena
         if(a.tag == "player" && b.tag == "enemy")
         {
             console.log("game over");
-            this.game.selecionaCena("end");
+            this.game.SelecScene("end");
         }
     }
+    */
 }

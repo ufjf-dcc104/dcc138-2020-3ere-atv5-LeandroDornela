@@ -18,7 +18,7 @@ export default class Mapa
         this.cena = null;
     }
 
-    desenhar(ctx)
+    Draw(ctx)
     {
         for (let l = 0; l < this.LINES; l++) {
             //this.tiles[l] = [];
@@ -43,7 +43,7 @@ export default class Mapa
         }
     }
 
-    carregaMapa(modelo)
+    LoadMap(modelo)
     {
         this.LINES = modelo.length;
         this.COLUMNS = modelo[0]?.length ?? 0;

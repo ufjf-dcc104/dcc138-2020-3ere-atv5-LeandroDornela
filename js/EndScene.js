@@ -27,5 +27,6 @@ export default class EndScene extends Cena
         {
             this.ctx.fillText("Aperte espaço para jogar novamente.", this.canvas.width/2, this.canvas.height - 8);
         }
+        
     }
 }

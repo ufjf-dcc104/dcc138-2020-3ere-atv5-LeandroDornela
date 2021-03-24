@@ -4,7 +4,7 @@ export default class Cena
     {
         this.canvas = canvas;
         this.ctx = canvas.getContext("2d");
-        this.sprites = [];
+        this.objects = [];
         this.aRemover = [];
         this.assets = assets;
         this.mapa = null;
@@ -16,41 +16,59 @@ export default class Cena
         
     }
 
-    Update(dt)
+    Update(dt, input)
     {
         if(this.assets.acabou())
         {
-            for (const sprite of this.sprites) {
-                sprite.passo(dt);
+            for (const sprite of this.objects)
+            {
+                sprite.Update(dt, input);
             }
         }
     }
 
-    UpdatePhysics()
+    UpdatePhysics(dt)
     {
-        for (let a = 0; a < this.sprites.length - 1; a++) {
-            const spriteA = this.sprites[a];
-            for (let b = a+1; b < this.sprites.length; b++) {
-                const spriteB = this.sprites[b];
-                if(spriteA.colidiuCom(spriteB))
+        // Verifica as colisões
+        for (let a = 0; a < this.objects.length - 1; a++)
+        {
+            const object_a = this.objects[a];
+
+            for (let b = a+1; b < this.objects.length; b++)
+            {
+                const object_b = this.objects[b];
+                if(object_a.CollideWith(object_b))
                 {
-                    this.OnCollide(spriteA, spriteB);
+                    //this.OnCollide(object_a, object_b);
+                    object_a.OnCollisionEnter(object_b);
                 }
             }
         }
+
+        // Atualiza colisões com o mapa e fisica
+        for (let i = 0; i < this.objects.length; i++)
+        {
+            this.objects[i].UpdateMapPhysics(dt);
+            this.objects[i].UpdatePhysics(dt);
+        }
     }
 
-    LateUpdate()
+    LateUpdate(dt)
     {
         for (const alvo of this.aRemover) {
-            const idx = this.sprites.indexOf(alvo);
+            const idx = this.objects.indexOf(alvo);
             if(idx >= 0)
             {
-                this.sprites.splice(idx, 1);
+                this.objects.splice(idx, 1);
             }
         }
 
         this.aRemover = [];
+
+        for (let i = 0; i < this.objects.length; i++)
+        {
+            this.objects[i].LateUpdate(dt);
+        }
     }
 
     Draw()
@@ -58,13 +76,13 @@ export default class Cena
         this.ctx.fillStyle = "grey";
         this.ctx.fillRect(0,0,this.canvas.width, this.canvas.height);
 
-        this.mapa?.desenhar(this.ctx);
+        this.mapa?.Draw(this.ctx);
 
         if(this.assets.acabou())
         {
-            for (let s = 0; s < this.sprites.length; s++) {
-                const sprite = this.sprites[s];
-                sprite.desenhar(this.ctx);
+            for (let s = 0; s < this.objects.length; s++) {
+                const sprite = this.objects[s];
+                sprite.Draw(this.ctx);
             }
         }
 
@@ -75,10 +93,11 @@ export default class Cena
     AddObject(sprite)
     {
         sprite.cena = this;
-        this.sprites.push(sprite);
+        this.objects.push(sprite);
     }
 
 
+    /*
     OnCollide(a, b)
     {
         if(!this.aRemover.includes(a))
@@ -91,6 +110,7 @@ export default class Cena
             this.aRemover.push(b);
         }
     }
+    */
 
     ConfigMap(mapa)
     {

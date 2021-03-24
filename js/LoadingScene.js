@@ -8,7 +8,7 @@ export default class LoadingScene extends Cena
         {
             if(this.input.comandos.get("PROXIMA_CENA"))
             {
-                this.game.selecionaCena("jogo");
+                this.game.SelectScene("jogo");
             }
         }
     }
