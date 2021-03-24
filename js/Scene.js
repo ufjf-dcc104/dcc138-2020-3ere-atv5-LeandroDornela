@@ -14,6 +14,8 @@ export default class Scene
     Start()
     {
         console.log("Scene Start.");
+
+        this.ctx.imageSmoothingEnabled = false;
     }
 
     Update(dt, input)
@@ -71,7 +73,7 @@ export default class Scene
         }
     }
 
-    Draw()
+    Draw(dt)
     {
         this.ctx.fillStyle = "grey";
         this.ctx.fillRect(0,0,this.canvas.width, this.canvas.height);
@@ -82,7 +84,7 @@ export default class Scene
         {
             for (let s = 0; s < this.objects.length; s++) {
                 const sprite = this.objects[s];
-                sprite.Draw(this.ctx);
+                sprite.Draw(this.ctx, dt);
             }
         }
 

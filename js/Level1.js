@@ -3,6 +3,7 @@ import modeloMapa1 from "../maps/map1.js";
 import GameObject from "./GameObject.js";
 import Mapa from "./Mapa.js";
 import Player from "./Player.js";
+import Enemy from "./Enemy.js";
 
 export default class Level1 extends Scene
 {
@@ -59,7 +60,7 @@ export default class Level1 extends Scene
     AddNewRandomEnemy(enemySize, enemyColor, enemySpeed)
     {
         let id = this.RandomRangeInt(0, this.map.freePositions.length);
-            const newEn = new GameObject({
+            const newEn = new Enemy({
                 x:this.map.freePositions[id].c * 32 + 32/2,
                 y:this.map.freePositions[id].l * 32 + 32/2,
                 w:enemySize,

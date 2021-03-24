@@ -33,7 +33,7 @@ export default class GameObject
         
     }
 
-    Draw(ctx)
+    Draw(ctx, dt)
     {
         ctx.fillStyle = this.color;
         ctx.fillRect(this.position_x - this.width/2, this.position_y - this.height/2, this.width, this.height);
@@ -115,7 +115,6 @@ export default class GameObject
                     height:SIZE};
                 if(this.CollideWith(tile))
                 {
-                    //this.vx = -this.vx;
                     this.position_x = tile.position_x - tile.width/2 - this.width/2 - 1;
 
                     this.mapCol = true;
@@ -138,7 +137,6 @@ export default class GameObject
                     height:SIZE};
                 if(this.CollideWith(tile))
                 {
-                    //this.vx = -this.vx;
                     this.position_x = tile.position_x + tile.width/2 + this.width/2 + 1;
 
                     this.mapCol = true;
@@ -161,7 +159,6 @@ export default class GameObject
                     height:SIZE};
                 if(this.CollideWith(tile))
                 {
-                    //this.vy = -this.vy;
                     this.position_y = tile.position_y - tile.height/2 - this.height/2 - 1;
 
                     this.mapCol = true;
@@ -184,7 +181,6 @@ export default class GameObject
                     height:SIZE};
                 if(this.CollideWith(tile))
                 {
-                    //this.vy = -this.vy;
                     this.position_y = tile.position_y + tile.height/2 + this.height/2 + 1;
 
                     this.mapCol = true;

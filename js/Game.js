@@ -26,9 +26,18 @@ export default class Game
 
 
         // Assets
-        this.assets.carregaImagem("orc", "assets/orc.png");
-        this.assets.carregaImagem("rocks", "assets/rocks.png");
-        this.assets.carregaImagem("lava", "assets/lava.png");
+        this.assets.carregaImagem("ground", "assets/ground.png");
+        this.assets.carregaImagem("wall", "assets/wall.png");
+
+        this.assets.carregaImagem("player_walk", "assets/player_walk.png");
+        this.assets.carregaImagem("player_idle", "assets/player_idle.png");
+
+        this.assets.carregaImagem("enemy_idle", "assets/enemy_idle.png");
+        this.assets.carregaImagem("enemy_walk", "assets/enemy_walk.png");
+
+        this.assets.carregaImagem("coin", "assets/coin.png");
+        this.assets.carregaImagem("door", "assets/door.png");
+
         this.assets.carregaAudio("collide", "assets/collide.wav");
         this.assets.carregaAudio("collide_wall", "assets/collide_wall.wav");
 

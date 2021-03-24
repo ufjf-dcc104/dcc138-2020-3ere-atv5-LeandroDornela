@@ -32,13 +32,13 @@ export default class Mapa
                         //ctx.fillStyle = "white";
                         //ctx.lineWidth = 1;
                         //ctx.strokeStyle = "green";
-                        ctx.drawImage(this.cena.assets.img("lava"), c*this.SIZE, l*this.SIZE, this.SIZE, this.SIZE)
+                        ctx.drawImage(this.cena.assets.img("wall"), c*this.SIZE, l*this.SIZE, this.SIZE, this.SIZE)
                         break;
                         default:
                         //ctx.fillStyle = "black";
                         //ctx.lineWidth = 1;
                         //ctx.strokeStyle = "grey";
-                        ctx.drawImage(this.cena.assets.img("rocks"), c*this.SIZE, l*this.SIZE, this.SIZE, this.SIZE)
+                        ctx.drawImage(this.cena.assets.img("ground"), c*this.SIZE, l*this.SIZE, this.SIZE, this.SIZE)
                 }
                 //ctx.fillRect(c*this.SIZE, l*this.SIZE, this.SIZE, this.SIZE);
                 //ctx.strokeRect(c*this.SIZE, l*this.SIZE, this.SIZE, this.SIZE);   

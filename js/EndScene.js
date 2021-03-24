@@ -8,7 +8,7 @@ export default class EndScene extends Scene
         {
             if(this.input.comandos.get("PROXIMA_CENA"))
             {
-                this.game.selecionaCena("jogo");
+                this.game.SelectScene("jogo");
             }
         }
     }
