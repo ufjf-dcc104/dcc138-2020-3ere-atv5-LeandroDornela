@@ -30,4 +30,17 @@ export default class Player extends GameObject
             this.vy = 0;
         }
     }
+
+    OnCollision(object)
+    {
+        if(object.tag == "enemy")
+        {
+            this.cena.assets.play("collide");
+        }
+    }
+
+    OnMapCollision()
+    {
+        this.cena.assets.play("collide_wall");
+    }
 }

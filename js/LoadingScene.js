@@ -1,6 +1,6 @@
-import Cena from "./Cena.js";
+import Scene from "./Scene.js";
 
-export default class LoadingScene extends Cena
+export default class LoadingScene extends Scene
 {
     Update(dt)
     {

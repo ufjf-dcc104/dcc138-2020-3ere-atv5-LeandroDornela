@@ -1,10 +1,10 @@
-import Cena from "./Cena.js";
+import Scene from "./Scene.js";
 import modeloMapa1 from "../maps/map1.js";
 import GameObject from "./GameObject.js";
 import Mapa from "./Mapa.js";
 import Player from "./Player.js";
 
-export default class Level1 extends Cena
+export default class Level1 extends Scene
 {
     constructor(canvas, assets)
     {

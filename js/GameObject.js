@@ -1,5 +1,7 @@
 export default class GameObject
 {
+    mapCol = false;
+
     constructor({x=0,y=0,w=0,h=0,vx=0,vy=0})
     {
         this.position_x = x;
@@ -44,7 +46,12 @@ export default class GameObject
         )
     }
 
-    OnCollisionEnter(object)
+    OnCollision(object)
+    {
+
+    }
+
+    OnMapCollision()
     {
 
     }
@@ -74,6 +81,7 @@ export default class GameObject
     {
         this.Move(dt);
 
+        this.mapCol = false;
         this.RightRestrictions(this.mx + 1, this.my - 1);
         this.RightRestrictions(this.mx + 1, this.my);
         this.RightRestrictions(this.mx + 1, this.my + 1);
@@ -86,6 +94,11 @@ export default class GameObject
         this.UpRestrictions(this.mx - 1, this.my - 1);
         this.UpRestrictions(this.mx, this.my - 1);
         this.UpRestrictions(this.mx + 1, this.my - 1);
+
+        if(this.mapCol)
+        {
+            this.OnMapCollision();
+        }
     }
 
     RightRestrictions(pmx, pmy)
@@ -95,12 +108,17 @@ export default class GameObject
             const SIZE = this.cena.map.SIZE;
             if(this.cena.map.tiles[pmy][pmx]!=0)
             {
-                const tile = {x:pmx*SIZE+SIZE/2, y:pmy*SIZE+SIZE/2, w:SIZE, h:SIZE};
+                const tile = {
+                    position_x:pmx*SIZE+SIZE/2,
+                    position_y:pmy*SIZE+SIZE/2,
+                    width:SIZE,
+                    height:SIZE};
                 if(this.CollideWith(tile))
                 {
-                    this.cena.assets.play("collide_wall");
-                    this.vx = -this.vx;
-                    this.position_x = tile.x - tile.w/2 - this.width/2 - 1;
+                    //this.vx = -this.vx;
+                    this.position_x = tile.position_x - tile.width/2 - this.width/2 - 1;
+
+                    this.mapCol = true;
                 }
             }
         }
@@ -113,12 +131,17 @@ export default class GameObject
             const SIZE = this.cena.map.SIZE;
             if(this.cena.map.tiles[pmy][pmx]!=0)
             {
-                const tile = {x:pmx*SIZE+SIZE/2, y:pmy*SIZE+SIZE/2, w:SIZE, h:SIZE};
+                const tile = {
+                    position_x:pmx*SIZE+SIZE/2,
+                    position_y:pmy*SIZE+SIZE/2,
+                    width:SIZE,
+                    height:SIZE};
                 if(this.CollideWith(tile))
                 {
-                    this.cena.assets.play("collide_wall");
-                    this.vx = -this.vx;
-                    this.position_x = tile.x + tile.w/2 + this.width/2 + 1;
+                    //this.vx = -this.vx;
+                    this.position_x = tile.position_x + tile.width/2 + this.width/2 + 1;
+
+                    this.mapCol = true;
                 }
             }
         }
@@ -131,12 +154,17 @@ export default class GameObject
             const SIZE = this.cena.map.SIZE;
             if(this.cena.map.tiles[pmy][pmx]!=0)
             {
-                const tile = {x:pmx*SIZE+SIZE/2, y:pmy*SIZE+SIZE/2, w:SIZE, h:SIZE};
+                const tile = {
+                    position_x:pmx*SIZE+SIZE/2,
+                    position_y:pmy*SIZE+SIZE/2,
+                    width:SIZE,
+                    height:SIZE};
                 if(this.CollideWith(tile))
                 {
-                    this.cena.assets.play("collide_wall");
-                    this.vy = -this.vy;
-                    this.position_y = tile.y - tile.h/2 - this.height/2 - 1;
+                    //this.vy = -this.vy;
+                    this.position_y = tile.position_y - tile.height/2 - this.height/2 - 1;
+
+                    this.mapCol = true;
                 }
             }
         }
@@ -149,12 +177,17 @@ export default class GameObject
             const SIZE = this.cena.map.SIZE;
             if(this.cena.map.tiles[pmy][pmx]!=0)
             {
-                const tile = {x:pmx*SIZE+SIZE/2, y:pmy*SIZE+SIZE/2, w:SIZE, h:SIZE};
+                const tile = {
+                    position_x:pmx*SIZE+SIZE/2,
+                    position_y:pmy*SIZE+SIZE/2,
+                    width:SIZE,
+                    height:SIZE};
                 if(this.CollideWith(tile))
                 {
-                    this.cena.assets.play("collide_wall");
-                    this.vy = -this.vy;
-                    this.position_y = tile.y + tile.h/2 + this.height/2 + 1;
+                    //this.vy = -this.vy;
+                    this.position_y = tile.position_y + tile.height/2 + this.height/2 + 1;
+
+                    this.mapCol = true;
                 }
             }
         }

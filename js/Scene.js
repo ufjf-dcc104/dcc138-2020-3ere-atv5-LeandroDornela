@@ -1,4 +1,4 @@
-export default class Cena
+export default class Scene
 {
     constructor(canvas, assets = null)
     {
@@ -40,7 +40,7 @@ export default class Cena
                 if(object_a.CollideWith(object_b))
                 {
                     //this.OnCollide(object_a, object_b);
-                    object_a.OnCollisionEnter(object_b);
+                    object_a.OnCollision(object_b);
                 }
             }
         }
@@ -48,8 +48,8 @@ export default class Cena
         // Atualiza colisões com o mapa e fisica
         for (let i = 0; i < this.objects.length; i++)
         {
-            this.objects[i].UpdateMapPhysics(dt);
             this.objects[i].UpdatePhysics(dt);
+            this.objects[i].UpdateMapPhysics(dt);
         }
     }
 
@@ -96,13 +96,18 @@ export default class Cena
         this.objects.push(sprite);
     }
 
+    Stop()
+    {
+
+    }
+
 
     /*
     OnCollide(a, b)
     {
         if(!this.aRemover.includes(a))
         {
-            this.assets.play("collide");
+            this.
             this.aRemover.push(a);
         }
         if(!this.aRemover.includes(b))
@@ -111,11 +116,4 @@ export default class Cena
         }
     }
     */
-
-    /*
-    ConfigMap(mapa)
-    {
-        this.mapa = mapa;
-        this.mapa.cena = this;
-    }*/
 }

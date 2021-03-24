@@ -47,7 +47,7 @@ export default class Game
 
     Stop()
     {
-        //this.cena?.parar();
+        this.cena?.Stop();
     }
 
 
