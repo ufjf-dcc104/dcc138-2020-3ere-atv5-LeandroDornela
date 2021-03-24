@@ -56,7 +56,10 @@ idAnim = requestAnimationFrame((t) => {Update(t);});
 function Start()
 {
     mapa1.carregaMapa(modeloMapa1);
-    cena1.Start();
+    
+    //cena1.Start();
+    game.iniciar();
+    
     cena1.ConfigMap(mapa1);
     cena1.AddObject(pc);
     assets.carregaImagem("orc", "assets/orc.png");
