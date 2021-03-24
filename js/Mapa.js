@@ -8,6 +8,7 @@ export default class Mapa
         this.tiles = [];
         this.freePositions = [];
         this.walls = [];
+        this.cena = null;
 
         for (let l = 0; l < this.LINES; l++) {
             this.tiles[l] = [];
@@ -15,11 +16,13 @@ export default class Mapa
                 this.tiles[l][c] = 0;      
             }
         }
-        this.cena = null;
+        
     }
 
     Draw(ctx)
     {
+        if(!this.cena) return;
+
         for (let l = 0; l < this.LINES; l++) {
             //this.tiles[l] = [];
             for (let c = 0; c < this.COLUMNS; c++) {

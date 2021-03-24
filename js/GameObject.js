@@ -37,10 +37,10 @@ export default class GameObject
         ctx.fillRect(this.position_x - this.width/2, this.position_y - this.height/2, this.width, this.height);
         ctx.strokeStyle = "yellow";
         ctx.strokeRect(
-            this.mx*this.cena.mapa.SIZE,
-            this.my*this.cena.mapa.SIZE,
-            this.cena.mapa.SIZE,
-            this.cena.mapa.SIZE
+            this.mx*this.cena.map.SIZE,
+            this.my*this.cena.map.SIZE,
+            this.cena.map.SIZE,
+            this.cena.map.SIZE
         )
     }
 
@@ -56,8 +56,8 @@ export default class GameObject
         this.position_x = this.position_x + this.vx * dt;
         this.position_y = this.position_y + this.vy * dt;
 
-        this.mx = Math.floor(this.position_x / this.cena.mapa.SIZE);
-        this.my = Math.floor(this.position_y / this.cena.mapa.SIZE);
+        this.mx = Math.floor(this.position_x / this.cena.map.SIZE);
+        this.my = Math.floor(this.position_y / this.cena.map.SIZE);
     }
 
     CollideWith(outro)
@@ -92,8 +92,8 @@ export default class GameObject
     {
         if(this.vx > 0)
         {
-            const SIZE = this.cena.mapa.SIZE;
-            if(this.cena.mapa.tiles[pmy][pmx]!=0)
+            const SIZE = this.cena.map.SIZE;
+            if(this.cena.map.tiles[pmy][pmx]!=0)
             {
                 const tile = {x:pmx*SIZE+SIZE/2, y:pmy*SIZE+SIZE/2, w:SIZE, h:SIZE};
                 if(this.CollideWith(tile))
@@ -110,8 +110,8 @@ export default class GameObject
     {
         if(this.vx < 0)
         {
-            const SIZE = this.cena.mapa.SIZE;
-            if(this.cena.mapa.tiles[pmy][pmx]!=0)
+            const SIZE = this.cena.map.SIZE;
+            if(this.cena.map.tiles[pmy][pmx]!=0)
             {
                 const tile = {x:pmx*SIZE+SIZE/2, y:pmy*SIZE+SIZE/2, w:SIZE, h:SIZE};
                 if(this.CollideWith(tile))
@@ -128,8 +128,8 @@ export default class GameObject
     {
         if(this.vy > 0)
         {
-            const SIZE = this.cena.mapa.SIZE;
-            if(this.cena.mapa.tiles[pmy][pmx]!=0)
+            const SIZE = this.cena.map.SIZE;
+            if(this.cena.map.tiles[pmy][pmx]!=0)
             {
                 const tile = {x:pmx*SIZE+SIZE/2, y:pmy*SIZE+SIZE/2, w:SIZE, h:SIZE};
                 if(this.CollideWith(tile))
@@ -146,8 +146,8 @@ export default class GameObject
     {
         if(this.vy < 0)
         {
-            const SIZE = this.cena.mapa.SIZE;
-            if(this.cena.mapa.tiles[pmy][pmx]!=0)
+            const SIZE = this.cena.map.SIZE;
+            if(this.cena.map.tiles[pmy][pmx]!=0)
             {
                 const tile = {x:pmx*SIZE+SIZE/2, y:pmy*SIZE+SIZE/2, w:SIZE, h:SIZE};
                 if(this.CollideWith(tile))

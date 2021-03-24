@@ -7,13 +7,13 @@ export default class Cena
         this.objects = [];
         this.aRemover = [];
         this.assets = assets;
-        this.mapa = null;
+        this.map = null;
         this.game = null;
     }
 
     Start()
     {
-        
+        console.log("Scene Start.");
     }
 
     Update(dt, input)
@@ -76,7 +76,7 @@ export default class Cena
         this.ctx.fillStyle = "grey";
         this.ctx.fillRect(0,0,this.canvas.width, this.canvas.height);
 
-        this.mapa?.Draw(this.ctx);
+        this.map?.Draw(this.ctx);
 
         if(this.assets.acabou())
         {
@@ -112,9 +112,10 @@ export default class Cena
     }
     */
 
+    /*
     ConfigMap(mapa)
     {
         this.mapa = mapa;
         this.mapa.cena = this;
-    }
+    }*/
 }
