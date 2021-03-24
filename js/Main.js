@@ -6,6 +6,7 @@ import Sprite from "./Sprite.js";
 import modeloMapa1 from "../maps/map1.js";
 import InputManager from "./InputManager.js";
 import Game from "./Game.js";
+import LoadingScene from "./LoadingScene.js";
 
 const TILE_WIDTH = 32;
 const TILE_HEIGHT = 32;
@@ -26,10 +27,12 @@ canvas.width = VIEW_WIDTH;
 canvas.height = VIEW_HEIGHT;
 
 const mapa1 = new Mapa(24, 32, 32);
+const loadingScene = new LoadingScene(canvas, assets);
 const cena1 = new Cena(canvas, assets);
 const pc = new Sprite({x:50,y:50,w:16,h:16,color:"white"});
 
 const game = new Game(canvas, assets, input);
+game.adicionarCena("loading", loadingScene);
 game.adicionarCena("jogo", cena1);
 
 const SPAWN_INTERVAL = 4;
@@ -59,7 +62,7 @@ function Start()
     
     //cena1.Start();
     game.iniciar();
-    
+
     cena1.ConfigMap(mapa1);
     cena1.AddObject(pc);
     assets.carregaImagem("orc", "assets/orc.png");
@@ -105,8 +108,6 @@ function Start()
     }
 
     SpawnEnemies(RandomRangeInt(5, 20), 32, "red", 20);
-
-    
 }
 
 
@@ -127,10 +128,10 @@ function Update(t)
     t0 = t0 ?? t;
     dt = (t - t0) / 1000;
 
-    cena1.Update(dt);
-    cena1.UpdatePhysics();
-    cena1.LateUpdate();
-    cena1.Draw();
+    game.cena.Update(dt);
+    game.cena.UpdatePhysics();
+    game.cena.LateUpdate();
+    game.cena.Draw();
 
     idAnim = requestAnimationFrame((t) => {Update(t);});
 
