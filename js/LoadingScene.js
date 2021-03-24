@@ -2,6 +2,17 @@ import Cena from "./Cena.js";
 
 export default class LoadingScene extends Cena
 {
+    Update(dt)
+    {
+        if(this.assets.acabou())
+        {
+            if(this.input.comandos.get("PROXIMA_CENA"))
+            {
+                this.game.selecionaCena("jogo");
+            }
+        }
+    }
+
     Draw()
     {
         this.ctx.fillStyle = "black";

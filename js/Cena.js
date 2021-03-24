@@ -18,7 +18,7 @@ export default class Cena
 
     Update(dt)
     {
-        if(this.assets.acabou)
+        if(this.assets.acabou())
         {
             for (const sprite of this.sprites) {
                 sprite.passo(dt);
@@ -68,8 +68,8 @@ export default class Cena
             }
         }
 
-        this.ctx.fillStyle = "yellow";
-        this.ctx.fillText(this.assets?.progresso(), 10, 20);
+        //this.ctx.fillStyle = "yellow";
+        //this.ctx.fillText(this.assets?.progresso(), 10, 20);
     }
 
     AddObject(sprite)

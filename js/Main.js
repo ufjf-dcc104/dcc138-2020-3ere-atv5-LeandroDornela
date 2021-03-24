@@ -76,6 +76,7 @@ function Start()
         ArrowRight:"DIREITA",
         ArrowUp:"CIMA",
         ArrowDown:"BAIXO",
+        " ": "PROXIMA_CENA"
     })
 
     pc.controlar = function(dt)
