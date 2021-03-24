@@ -75,7 +75,7 @@ export default class Player extends GameObject
 
         if(object.tag == "door")
         {
-            this.cene.game.SelectScene(object.nextScene);
+            this.cena.game.SelectScene(object.nextScene);
         }
     }
 

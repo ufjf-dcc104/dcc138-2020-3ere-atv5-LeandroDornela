@@ -23,4 +23,15 @@ export default class Enemy extends GameObject
             this.position_x - this.width/2, this.position_y - this.height/2, this.width, this.height);
         }
     }
+
+    OnMapCollision()
+    {
+        this.vx = 30*Math.random() * this.RandomRangeInt(-1,2);
+        this.vy = 30*Math.random() * this.RandomRangeInt(-1,2);
+    }
+
+    RandomRangeInt(from, to)
+    {
+        return (Math.floor(Math.random() * (to - from) ) + from);
+    }
 }
