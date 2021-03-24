@@ -29,25 +29,30 @@ export default class Mapa
                 switch(this.tiles[l][c])
                 {
                     case 1:
-                        //ctx.fillStyle = "white";
-                        //ctx.lineWidth = 1;
-                        //ctx.strokeStyle = "green";
-                        ctx.drawImage(this.cena.assets.img("wall"), c*this.SIZE, l*this.SIZE, this.SIZE, this.SIZE)
+                        ctx.drawImage(this.cena.assets.img("wall"), c*this.SIZE, l*this.SIZE, this.SIZE, this.SIZE);
                         break;
-                        default:
-                        //ctx.fillStyle = "black";
-                        //ctx.lineWidth = 1;
-                        //ctx.strokeStyle = "grey";
-                        ctx.drawImage(this.cena.assets.img("ground"), c*this.SIZE, l*this.SIZE, this.SIZE, this.SIZE)
-                }
-                //ctx.fillRect(c*this.SIZE, l*this.SIZE, this.SIZE, this.SIZE);
-                //ctx.strokeRect(c*this.SIZE, l*this.SIZE, this.SIZE, this.SIZE);   
+                    case 2:
+                        // player
+                        ctx.drawImage(this.cena.assets.img("ground"), c*this.SIZE, l*this.SIZE, this.SIZE, this.SIZE);
+                        break;
+                    case 3:
+                        // coin
+                        ctx.drawImage(this.cena.assets.img("ground"), c*this.SIZE, l*this.SIZE, this.SIZE, this.SIZE);
+                        break;
+                    case 4:
+                        // door
+                        ctx.drawImage(this.cena.assets.img("ground"), c*this.SIZE, l*this.SIZE, this.SIZE, this.SIZE);
+                        break;
+                    default:
+                        ctx.drawImage(this.cena.assets.img("ground"), c*this.SIZE, l*this.SIZE, this.SIZE, this.SIZE);
+                }  
             }
         }
     }
 
-    LoadMap(modelo)
+    LoadMap(modelo, cena)
     {
+        this.cena = cena;
         this.LINES = modelo.length;
         this.COLUMNS = modelo[0]?.length ?? 0;
         this.tiles = [];
@@ -62,6 +67,18 @@ export default class Mapa
                 else if(this.tiles[l][c] == 1)
                 {
                     this.walls.push({l,c});
+                }
+                else if(this.tiles[l][c] == 2)
+                {
+                    this.cena.MapPositionID(2, l, c);
+                }
+                else if(this.tiles[l][c] == 3)
+                {
+                    this.cena.MapPositionID(3, l, c);
+                }
+                else if(this.tiles[l][c] == 4)
+                {
+                    this.cena.MapPositionID(4, l, c);
                 }
             }
         }

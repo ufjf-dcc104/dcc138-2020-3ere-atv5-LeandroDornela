@@ -92,6 +92,11 @@ export default class Scene
         //this.ctx.fillText(this.assets?.progresso(), 10, 20);
     }
 
+    MapPositionID(id, i, j)
+    {
+        
+    }
+
     AddObject(sprite)
     {
         sprite.cena = this;

@@ -14,7 +14,7 @@ export default class Level1 extends Scene
         this.map = new Mapa(24, 32, 32);
         this.SPAWN_INTERVAL = 4;
         this.spawnTimer = 0;
-        this.player = new Player({x:100,y:100,w:32,h:32,color:"white"});
+        this.player = null;
     }
     
 
@@ -23,12 +23,9 @@ export default class Level1 extends Scene
         super.Start();
 
         // Setup do mapa
-        this.map.LoadMap(modeloMapa1);
-        this.map.cena = this;
+        this.map.LoadMap(modeloMapa1, this);
         
-        // Cria player
-        this.player.tag = "player";
-        this.AddObject(this.player);
+        
 
         this.SpawnEnemies(this.RandomRangeInt(5, 20), 32, "red", 20);
     }
@@ -46,6 +43,25 @@ export default class Level1 extends Scene
         else
         {
             this.spawnTimer += dt;
+        }
+    }
+
+    MapPositionID(id, i, j)
+    {
+        switch(id)
+        {
+            case 2:
+                // player
+                this.player = new Player({x:i*32 + 16,y:j*32 + 16,w:32,h:32,color:"white"});
+                this.player.tag = "player";
+                this.AddObject(this.player);
+                break;
+            case 3:
+                // coin
+                break;
+            case 4:
+                // door
+            break;
         }
     }
 
