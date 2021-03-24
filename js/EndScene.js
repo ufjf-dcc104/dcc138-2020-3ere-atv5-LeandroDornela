@@ -1,6 +1,6 @@
 import Cena from "./Cena.js";
 
-export default class LoadingScene extends Cena
+export default class EndScene extends Cena
 {
     Update(dt)
     {
@@ -21,11 +21,11 @@ export default class LoadingScene extends Cena
         this.ctx.font = "16px Arial";
         this.ctx.fillStyle = "white";
         this.ctx.textAlign = "center";
-        this.ctx.fillText(this.assets?.progresso(), this.canvas.width/2, this.canvas.height/2);
+        this.ctx.fillText("GAME OVER", this.canvas.width/2, this.canvas.height/2);
 
         if(this.assets.acabou())
         {
-            this.ctx.fillText("Aperte espaço para continuar.", this.canvas.width/2, this.canvas.height - 8);
+            this.ctx.fillText("Aperte espaço para jogar novamente.", this.canvas.width/2, this.canvas.height - 8);
         }
     }
 }

@@ -7,6 +7,8 @@ import modeloMapa1 from "../maps/map1.js";
 import InputManager from "./InputManager.js";
 import Game from "./Game.js";
 import LoadingScene from "./LoadingScene.js";
+import EndScene from "./EndScene.js";
+import Level1 from "./Level1.js";
 
 const TILE_WIDTH = 32;
 const TILE_HEIGHT = 32;
@@ -28,12 +30,15 @@ canvas.height = VIEW_HEIGHT;
 
 const mapa1 = new Mapa(24, 32, 32);
 const loadingScene = new LoadingScene(canvas, assets);
-const cena1 = new Cena(canvas, assets);
+const cena1 = new Level1(canvas, assets);
+const endScene = new EndScene(canvas, assets);
 const pc = new Sprite({x:50,y:50,w:16,h:16,color:"white"});
+pc.tag = "player";
 
 const game = new Game(canvas, assets, input);
 game.adicionarCena("loading", loadingScene);
 game.adicionarCena("jogo", cena1);
+game.adicionarCena("end", endScene);
 
 const SPAWN_INTERVAL = 4;
 let spawnTimer = 0;
@@ -175,6 +180,7 @@ function AddNewRandomEnemy(enemySize, enemyColor, enemySpeed)
             vy:enemySpeed * Math.random() * RandomRangeInt(-1,2)
         });
         mapa1.freePositions.splice(id, 1);
+        newEn.tag = "enemy";
         cena1.AddObject(newEn);
 }
 

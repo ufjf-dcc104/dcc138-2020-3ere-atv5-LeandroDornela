@@ -16,6 +16,8 @@ export default class Sprite
         this.mx = 0;
         this.my = 0;
 
+        this.tag = "untaged";
+
         this.controlar = controlar;
     }
 
