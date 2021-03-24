@@ -92,7 +92,7 @@ export default class Sprite
                 if(this.colidiuCom(tile))
                 {
                     this.cena.assets.play("collide_wall");
-                    this.vx = 0;
+                    this.vx = -this.vx;
                     this.x = tile.x - tile.w/2 - this.w/2 - 1;
                 }
             }
@@ -111,7 +111,7 @@ export default class Sprite
                 if(this.colidiuCom(tile))
                 {
                     this.cena.assets.play("collide_wall");
-                    this.vx = 0;
+                    this.vx = -this.vx;
                     this.x = tile.x + tile.w/2 + this.w/2 + 1;
                 }
             }
@@ -130,7 +130,7 @@ export default class Sprite
                 if(this.colidiuCom(tile))
                 {
                     this.cena.assets.play("collide_wall");
-                    this.vy = 0;
+                    this.vy = -this.vy;
                     this.y = tile.y - tile.h/2 - this.h/2 - 1;
                 }
             }
@@ -149,7 +149,7 @@ export default class Sprite
                 if(this.colidiuCom(tile))
                 {
                     this.cena.assets.play("collide_wall");
-                    this.vy = 0;
+                    this.vy = -this.vy;
                     this.y = tile.y + tile.h/2 + this.h/2 + 1;
                 }
             }
