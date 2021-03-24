@@ -106,7 +106,7 @@ export default class GameObject
         if(this.vx > 0)
         {
             const SIZE = this.cena.map.SIZE;
-            if(this.cena.map.tiles[pmy][pmx]!=0)
+            if(this.cena.map.tiles[pmy][pmx]==1)
             {
                 const tile = {
                     position_x:pmx*SIZE+SIZE/2,
@@ -128,7 +128,7 @@ export default class GameObject
         if(this.vx < 0)
         {
             const SIZE = this.cena.map.SIZE;
-            if(this.cena.map.tiles[pmy][pmx]!=0)
+            if(this.cena.map.tiles[pmy][pmx]==1)
             {
                 const tile = {
                     position_x:pmx*SIZE+SIZE/2,
@@ -150,7 +150,7 @@ export default class GameObject
         if(this.vy > 0)
         {
             const SIZE = this.cena.map.SIZE;
-            if(this.cena.map.tiles[pmy][pmx]!=0)
+            if(this.cena.map.tiles[pmy][pmx]==1)
             {
                 const tile = {
                     position_x:pmx*SIZE+SIZE/2,
@@ -172,7 +172,7 @@ export default class GameObject
         if(this.vy < 0)
         {
             const SIZE = this.cena.map.SIZE;
-            if(this.cena.map.tiles[pmy][pmx]!=0)
+            if(this.cena.map.tiles[pmy][pmx]==1)
             {
                 const tile = {
                     position_x:pmx*SIZE+SIZE/2,

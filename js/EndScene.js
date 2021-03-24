@@ -22,6 +22,7 @@ export default class EndScene extends Scene
         this.ctx.fillStyle = "white";
         this.ctx.textAlign = "center";
         this.ctx.fillText("GAME OVER", this.canvas.width/2, this.canvas.height/2);
+        this.ctx.fillText(this.game.points, this.canvas.width/2, this.canvas.height/2 + 24);
 
         if(this.assets.acabou())
         {

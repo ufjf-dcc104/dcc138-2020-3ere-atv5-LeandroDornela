@@ -61,6 +61,22 @@ export default class Player extends GameObject
             this.cena.assets.play("collide");
             this.cena.game.SelectScene("end");
         }
+
+        if(object.tag == "coin")
+        {
+            this.cena.assets.play("coin");
+            this.cena.game.AddCoin();
+
+            if(!this.cena.aRemover.includes(object))
+            {
+                this.cena.aRemover.push(object);
+            }
+        }
+
+        if(object.tag == "door")
+        {
+            this.cene.game.SelectScene(object.nextScene);
+        }
     }
 
     OnMapCollision()

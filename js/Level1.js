@@ -4,6 +4,8 @@ import GameObject from "./GameObject.js";
 import Mapa from "./Mapa.js";
 import Player from "./Player.js";
 import Enemy from "./Enemy.js";
+import Coin from "./Coin.js";
+import Door from "./Door.js";
 
 export default class Level1 extends Scene
 {
@@ -52,15 +54,22 @@ export default class Level1 extends Scene
         {
             case 2:
                 // player
-                this.player = new Player({x:i*32 + 16,y:j*32 + 16,w:32,h:32,color:"white"});
+                this.player = new Player({x:j*32 + 16,y:i*32 + 16,w:32,h:32,color:"white"});
                 this.player.tag = "player";
                 this.AddObject(this.player);
                 break;
             case 3:
                 // coin
+                let coin = new Coin({x:j*32 + 16,y:i*32 + 16,w:32,h:32,color:"yellow"})
+                coin.tag = "coin";
+                this.AddObject(coin);
                 break;
             case 4:
                 // door
+                let door = new Door({x:j*32 + 16,y:i*32 + 16,w:32,h:32,color:"red"})
+                door.tag = "door";
+                door.nextScene = "end";
+                this.AddObject(door);
             break;
         }
     }

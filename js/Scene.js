@@ -107,20 +107,4 @@ export default class Scene
     {
 
     }
-
-
-    /*
-    OnCollide(a, b)
-    {
-        if(!this.aRemover.includes(a))
-        {
-            this.
-            this.aRemover.push(a);
-        }
-        if(!this.aRemover.includes(b))
-        {
-            this.aRemover.push(b);
-        }
-    }
-    */
 }

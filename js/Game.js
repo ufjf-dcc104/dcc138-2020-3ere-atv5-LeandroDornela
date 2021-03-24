@@ -11,6 +11,8 @@ export default class Game
         this.input = input;
         this.cenas = new Map();
         this.cena = null;
+
+        this.points = 0;
     }
 
 
@@ -39,6 +41,7 @@ export default class Game
         this.assets.carregaImagem("door", "assets/door.png");
 
         this.assets.carregaAudio("collide", "assets/collide.wav");
+        this.assets.carregaAudio("coin", "assets/coin.wav");
         this.assets.carregaAudio("collide_wall", "assets/collide_wall.wav");
 
         // Input
@@ -82,5 +85,10 @@ export default class Game
             this.cena = this.cenas.get(chave);
             this.cena.Start();
         }
+    }
+
+    AddCoin()
+    {
+        this.points++;
     }
 }
